@@ -55,14 +55,14 @@ endfunction
 function! autosession#load_session (sess)
     let g:autosession_session_name = a:sess
     if filereadable(a:sess)
-        execute 'silent! source! ' . g:autosession_session_name
+        execute 'silent source ' . g:autosession_session_name
     endif
 endfunction
 "" }}}
 
 "" function tou dump the active session {{{1
 function! autosession#dump_session ()
-    execute 'silent! mksession! ' . g:autosession_session_name
+    execute 'silent mksession! ' . g:autosession_session_name
 endfunction
 
 "" }}}
