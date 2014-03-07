@@ -28,6 +28,7 @@ let g:loaded_autosession = 1
 let s:localfilename = ".session.vim"
 let s:sessiondir = expand("~/.vim/")
 let g:autosession_session_name = ""
+let g:autosession_prefer_global = 0
 
 "" function to determine correct session name {{{1
 " first try to find a .session.vim file in the current directory.
@@ -40,6 +41,8 @@ function! autosession#get_session_name ()
     if filewritable(localfile)
         return localfile
     elseif filewritable(globalfile)
+        return globalfile
+    elseif g:autosession_prefer_global
         return globalfile
     else
         return localfile
