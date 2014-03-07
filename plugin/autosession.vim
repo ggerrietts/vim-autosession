@@ -26,8 +26,8 @@ let g:loaded_autosession = 1
 "" session files. It will source them when vim starts a new window, or 
 "" write them when it closes.
 let s:localfilename = ".session.vim"
-let s:sessiondir = "~/.vim/"
-let g:session_name = ""
+let s:sessiondir = expand("~/.vim/")
+let g:autosession_session_name = ""
 
 "" function to determine correct session name {{{1
 " first try to find a .session.vim file in the current directory.
@@ -39,7 +39,7 @@ function! autosession#get_session_name ()
     let globalfile = s:sessiondir . dirname . s:localfilename
     if filewritable(localfile)
         return localfile
-    elseif filewritable(expand(globalfile))
+    elseif filewritable(globalfile)
         return globalfile
     else
         return localfile
