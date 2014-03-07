@@ -51,7 +51,9 @@ endfunction
 "" function to load a named session {{{1
 function! autosession#load_session (sess)
     let g:autosession_session_name = a:sess
-    execute 'source ' . g:autosession_session_name
+    if filereadable(a:sess)
+        execute 'source ' . g:autosession_session_name
+    endif
 endfunction
 "" }}}
 
@@ -65,12 +67,16 @@ endfunction
 
 "" 'main' function {{{1
 " run determiner, register session, load session on new window
-function! autosession#set_up_session ()
-    call autosession#load_session(autosession#get_session_name())
+function! autosession#set_up_session (...)
+    if a:0 == 1
+        call autosession#load_session(a:1)
+    else
+        call autosession#load_session(autosession#get_session_name())
+    endif
 endfunction
 "" }}}
 
-call autosession#set_up_session()
+cmd! -nargs=? Autosession call autosession#set_up_session(<f-args>)
 
 
 "" register autocommand to save session on exit
