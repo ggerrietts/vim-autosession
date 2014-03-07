@@ -85,7 +85,7 @@ function! autosession#set_up_session (...)
 endfunction
 "" }}}
 
-cmd! -nargs=? Autosession call autosession#set_up_session(<f-args>)
+command! -nargs=? Autosession call autosession#set_up_session(<f-args>)
 
 
 "" identify session somewhere?
