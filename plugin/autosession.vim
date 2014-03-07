@@ -86,8 +86,3 @@ endfunction
 "" }}}
 
 command! -nargs=? Autosession call autosession#set_up_session(<f-args>)
-
-
-"" identify session somewhere?
-
-" vim:set ft=vim et sw=4 sts=4:
