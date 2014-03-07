@@ -10,17 +10,18 @@ high-level plugin management.
 That said, you can copy `plugin/autosession.vim` to `~/.vim/plugin` and everything 
 should work fine.
 
-## What It Does
+Once installed, a command `:Autosession` becomes available.
 
-When you start a vim session, it tries to load a session file. It first tries
-to load `.session.vim` from the working directory. If that fails, it tries to
-load `~/.vim/<directory>.session.vim`. In this case `<directory>` is the name of
-the current working directory (but not including its path.) If this second
-session file is not found, it assumes there is no session to load. 
+`:Autosession` is intended to be used in a `.gvimrc` or `.vimrc`. It will look
+for `.session.vim` in the current directory. If the local session file does not 
+exist, it will look for `~/.vim/<directory>.session.vim`. If it finds a session
+file, it will try to load the session it finds. Then when vim exits, it will
+save the session. If no session file was found, it will save the session to the
+initial working directory.
 
-When you exit the vim session, it stores session data to the session file. If 
-no session file was found at load time, it writes `.session.vim` in the initial
-working directory.
+`:Autosession <session-file>` can be used to declare the name of a session file
+for the current window. If `<session-file>` exists, it will be sourced.
+
 
 ## Why Bother
 

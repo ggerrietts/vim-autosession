@@ -76,17 +76,17 @@ function! autosession#set_up_session (...)
     else
         call autosession#load_session(autosession#get_session_name())
     endif
+
+    "" register autocommand to save session on exit
+    augroup autosessiongroup
+        autocmd!
+        autocmd! VimLeavePre * call autosession#dump_session()
+    augroup END
 endfunction
 "" }}}
 
 cmd! -nargs=? Autosession call autosession#set_up_session(<f-args>)
 
-
-"" register autocommand to save session on exit
-augroup autosessiongroup
-    autocmd!
-    autocmd! VimLeavePre * call autosession#dump_session()
-augroup END
 
 "" identify session somewhere?
 
